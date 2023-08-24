@@ -10,6 +10,8 @@ gem 'sqlite3'
 gem 'devise'
 gem 'pundit'
 gem 'table_print'
+gem 'sassc-rails'
+gem 'bootstrap', '~> 5.3.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -26,6 +28,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
