@@ -1,0 +1,50 @@
+/* app/assets/stylesheets/custom.css */
+.custom-signup-button {
+  background-color: #FFC107; /* Cool red color */
+  border-color: #FFC107; /* Border color */
+  color: white; /* Text color */
+}
+
+.custom-signup-button:hover {
+  background-color: #FFA000; /* Darker shade for hover effect */
+  border-color: #FFA000; /* Darker border color for hover effect */
+}
+/* Custom classes */
+.border-custom {
+  border: 2px solid #FFC107;
+}
+
+.bg-custom {
+  background-color: #FFC107;
+}
+
+.text-custom {
+  color: #FFC107;
+}
+/* Define outline color for .outline-custom class */
+.outline-custom {
+  border: 2px solid #FFC107; /* Use the desired outline color */
+}
+/* Outline style for cards */
+.outline-custom {
+  border: 2px solid #FFC107; /* Cool yellow color */
+  border-radius: 5px; /* Add rounded corners */
+}
+
+/* Additional styling for card content if needed */
+.card-header {
+  background-color: #FFC107;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.list-group-item {
+  border: none;
+}
+.menu-page {
+
+}
+.layout-page {
+ 
+}

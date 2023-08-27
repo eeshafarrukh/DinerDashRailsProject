@@ -2,18 +2,25 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Project
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.2
+    # ...
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    # Configure Devise permitted parameters
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+
+      DeviseController.class_eval do
+        before_action :configure_permitted_parameters, if: :devise_controller?
+
+        protected
+
+        def configure_permitted_parameters
+          devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name])
+        end
+      end
+    end
   end
 end

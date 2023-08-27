@@ -1,0 +1,14 @@
+
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">Cart</h1>
+  </div>
+  <div class="card-body">
+    <% if @cart.orderables.count > 0 %>
+      <%= render "cart/orderables" %>
+      <h3 class="card-text justify-content-center">Total: <%= @cart.total %></h3>
+    <% else %>
+      <p class="card-text">Your cart is empty</p>
+    <% end %>
+  </div> 
+</div>

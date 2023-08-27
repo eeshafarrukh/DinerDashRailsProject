@@ -1,0 +1,4 @@
+# app/views/cart/add.js.erb
+<% if @cart_updated %>
+  $("#cart-container").html("<%= j(render partial: 'cart/cart', cart: @cart) %>");
+<% end %>

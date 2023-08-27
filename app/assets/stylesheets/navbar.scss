@@ -1,0 +1,46 @@
+/* app/assets/stylesheets/navbar.css */
+
+/* Style for the navbar background */
+.navbar-custom {
+  background-color: white; /* Baby Pink */
+}
+
+/* Style for the logo image */
+.logo-img {
+  width: 150px; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Style for the navbar links */
+.navbar-custom .navbar-nav .nav-link {
+  color: black; /* Black text */
+  margin-left: auto; /* Move links to the left */
+  font-weight: bold;
+}
+
+/* Style for the active navbar link */
+.navbar-custom .navbar-nav .nav-item.active .nav-link {
+  font-weight: bold;
+}
+
+/* Style for the brand logo */
+.navbar-custom .navbar-brand {
+  color: black;
+}
+
+/* Style for the toggler icon */
+.navbar-custom .navbar-toggler-icon {
+  background-color: white;
+}
+/* Style for the active and hover navbar links */
+.navbar-custom .navbar-nav .nav-item.active .nav-link {
+  background-color:  #FFC107;/* Cool red color */
+  color: white; /* White text */
+  border-radius: 5px; /* Add some rounded corners */
+}
+.navbar-custom .navbar-nav .nav-item.active .nav-link,
+.navbar-custom .navbar-nav .nav-item.user.active .nav-link {
+  background-color:  #FFC107; /* Cool red color */
+  color: white; /* White text */
+  border-radius: 5px; /* Add some rounded corners */
+}

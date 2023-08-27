@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_23_194631) do
+ActiveRecord::Schema.define(version: 2023_08_26_212635) do
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -41,13 +46,27 @@ ActiveRecord::Schema.define(version: 2023_08_23_194631) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer "order_id", null: false
+    t.integer "order_id"
     t.integer "item_id", null: false
     t.integer "quantity", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "total"
+    t.decimal "unit_price"
+    t.integer "cart_id"
+    t.index ["cart_id"], name: "index_order_items_on_cart_id"
     t.index ["item_id"], name: "index_order_items_on_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orderables", force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "cart_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orderables_on_cart_id"
+    t.index ["item_id"], name: "index_orderables_on_item_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -55,6 +74,8 @@ ActiveRecord::Schema.define(version: 2023_08_23_194631) do
     t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "subtotal"
+    t.decimal "total"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

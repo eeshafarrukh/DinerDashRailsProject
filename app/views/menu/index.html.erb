@@ -1,0 +1,40 @@
+<%= javascript_include_tag 'ajax_form_submit' %> <!-- Include the JavaScript file -->
+
+<div class="container menu-page">
+  <div class="container">
+    <% @categories.each do |category| %>
+      <div class="row mt-4">
+        <div class="col">
+          <h3><%= category.name %></h3>
+          <div class="row">
+            <% category.items.each do |item| %>
+              <div class="col-md-5 mb-5"> <!-- Increased width to col-md-6 -->
+                <div class="card outline-custom">
+                  <div class="card-header">
+                    <h5 class="mb-0"><%= item.title %></h5>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text"><%= item.description %></p>
+                    <p class="card-text">Price: <%= number_to_currency(item.price) %></p>
+                   
+                    <%= form_with(url: cart_add_path, local: true, remote: true) do |f| %>
+                      <div class="input-group mb-3">
+                        <%= f.hidden_field :id, value: item.id %>
+                        <%= f.number_field :quantity, value: 1, min: 1, class: "form-control" %>
+                        <div class="input-group-append">
+                          <%= f.submit "Add to Cart", class: "btn btn-warning" %>
+                        </div>
+                      </div>
+                    <% end %>
+
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- ... your existing content ... -->
+</div>

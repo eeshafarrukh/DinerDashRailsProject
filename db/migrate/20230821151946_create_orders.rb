@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.references :user, null: false, foreign_key: true
       t.string :status, null: false
-
+    
       t.timestamps
     end
   end

@@ -1,8 +1,9 @@
 class Item < ApplicationRecord
    has_many :categorizations
   has_many :categories, through: :categorizations
-
-
+  has_many :orderables
+  has_many :carts, through: :orderables 
+  has_many :order_items
   validates :title, :description, :price, presence: true
   validates :title, uniqueness: true
   validates :title, :description, presence: true

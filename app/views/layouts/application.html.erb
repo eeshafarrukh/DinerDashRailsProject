@@ -3,25 +3,34 @@
   <head>
     <title>Project</title>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
+    <%= csp_meta_tag %>
+    
+
+    <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'ajax_form_submit' %> <!-- Include the JavaScript file -->
+
+    <%= stylesheet_link_tag 'application', 'navbar', media: 'all' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render 'layouts/nav'%>
-    <%= yield %>
+
+    <div class="container layout-page">
+
+    <%= render 'layouts/nav' %>
+    <div class="container">
+    <%= yield %>    
+
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <ul>
-    <% if user_signed_in? %>
-      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-    <% else %>
-      <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-      <li><%= link_to 'Login', new_user_session_path %></li>
-    <% end %>
-  </ul>
+    <%= render partial: "cart/cart" if @render_cart===true%>
+    
+  <!-- ... your existing content ... -->
+    </div>
+
 
   </body>
 </html>

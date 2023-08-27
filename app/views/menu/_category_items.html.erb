@@ -1,0 +1,16 @@
+<!-- app/views/menu/_category_items.html.erb -->
+
+<% items.each do |item| %>
+  <div class="col-md-4 mb-4">
+    <div class="card outline-custom">
+      <div class="card-header">
+        <h4 class="mb-0"><%= item.title %></h4>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= item.description %></p>
+        <p class="card-text">Price: <%= number_to_currency(item.price) %></p>
+        <button type="button" class="btn btn-warning add-to-cart" data-item-id="<%= item.id %>">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+<% end %>
