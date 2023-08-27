@@ -35,4 +35,20 @@ class CartController < ApplicationController
       format.js   # Render remove.js.erb template
     end
   end
+  def checkout
+  @order = current_user.orders.create(status: "ordered")
+  @cart.orderables.each do |orderable|
+    @order.order_items.create(item: orderable.item, quantity: orderable.quantity)
+  end
+
+  # Delete associated orderables before destroying the cart
+  @cart.orderables.destroy_all
+
+  # Clear the cart after successful checkout
+  @cart.destroy
+  session[:cart_id] = nil
+
+  redirect_to order_path(@order), notice: "Order successfully placed!"
+end
+
 end

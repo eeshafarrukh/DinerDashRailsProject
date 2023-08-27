@@ -36,5 +36,6 @@
       </div>
     <% end %>
   </div>
-  <!-- ... your existing content ... -->
+   <%= render partial: "cart/cart" if @render_cart===true%>
+    
 </div>

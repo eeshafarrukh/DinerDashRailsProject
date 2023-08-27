@@ -1,3 +1,56 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<p><%= current_user&.admin? %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Diner Dash</title>
+
+</head>
+<body>
+  <header>
+   
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content text-center">
+        <h1>Welcome to </h1>
+        
+        <%= image_tag("logo.png", alt: "Diner Dash Logo", class: "logo") %>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <!-- Add feature content here -->
+    </div>
+  </section>
+
+  <footer>
+    <!-- Add footer content here -->
+  </footer>
+</body>
+</html>
+
+<style>
+  /* Style for the logo */
+  .logo {
+    max-width: 1000px; /* Adjust the size as needed */
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  /* Style for the welcome message */
+  .hero-content {
+    padding-top: 100px;
+
+  }
+
+
+  .yellow-text {
+    color: black;
+  }
+
+ 
+</style>

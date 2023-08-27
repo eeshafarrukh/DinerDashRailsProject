@@ -5,4 +5,7 @@ class OrderPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+  def user_show?
+    user.present? && (record.user == user)
+  end
 end

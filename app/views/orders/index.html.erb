@@ -1,0 +1,24 @@
+<h1>Your Orders</h1>
+<div class="row">
+  <% @orders.each do |order| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-header">
+          Order ID: <%=order.id %><%= link_to " View order", order_path(order) %>
+        </div>
+        <div class="card-body">
+          <p><strong>Status:</strong> <%= order.status %></p>
+          <p><strong>Subtotal:</strong> <%= number_to_currency(order.subtotal) %></p>
+          <p><strong>Items Ordered:</strong></p>
+          <ul>
+            <% order.order_items.each do |order_item| %>
+              <li><%= order_item.quantity %> x <%= order_item.item.title %> - <%= number_to_currency(order_item.total) %></li>
+            <% end %>
+          </ul>
+          <p><strong>Total:</strong> <%= number_to_currency(order.subtotal) %></p>
+          <!-- Add more order details here if needed -->
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

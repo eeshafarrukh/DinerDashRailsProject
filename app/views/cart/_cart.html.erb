@@ -1,12 +1,21 @@
-
 <div class="card">
   <div class="card-header">
     <h1 class="card-title">Cart</h1>
   </div>
   <div class="card-body">
     <% if @cart.orderables.count > 0 %>
-      <%= render "cart/orderables" %>
-      <h3 class="card-text justify-content-center">Total: <%= @cart.total %></h3>
+      <div class="cart-orderables">
+        <%= render "cart/orderables" %>
+      </div>
+      <div class="cart-total">
+        <h3 class="d-flex justify-content-start">Total: <%= @cart.total %></h3>
+        <div class="d-flex justify-content-end">
+      <%= link_to "Checkout", cart_checkout_path, method: :post, class: "btn btn-warning float-right" %>
+   
+
+      </div>
+      </div>
+      
     <% else %>
       <p class="card-text">Your cart is empty</p>
     <% end %>

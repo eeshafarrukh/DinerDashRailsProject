@@ -1,4 +1,6 @@
 <!-- app/views/cart/show.html.erb -->
+ <%= render partial: "cart/cart" if @render_cart===true%>
+    
 <div id="cart-item">
 	<%= render 'cart_items'  %>
 	
