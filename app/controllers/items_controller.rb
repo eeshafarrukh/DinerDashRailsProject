@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def retire
     @item = Item.find(params[:id])
     @item.update(retired: true)
-    redirect_to items_path, notice: 'Item was retired successfully.'
+    redirect_to @item, notice: 'Item was retired successfully.'
   end
   def index
     @items = Item.all
@@ -25,8 +25,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.retired = false # Set retired to false for new items
+    puts @item.inspect # Debug statement to inspect @item
     authorize @item 
-    
+      
     if @item.save
       redirect_to @item, notice: 'Item was successfully created.'
     else

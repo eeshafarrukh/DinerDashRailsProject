@@ -52,3 +52,22 @@
 .layout-page {
  
 }
+/* Add a background color and reduce opacity for retired items */
+.retired-item {
+  background-color: #f2f2f2; /* Grey background color */
+  opacity: 0.6; /* Reduced opacity */
+}
+
+/* Style the "Retire Item" button for retired items */
+.retired-item .btn-danger {
+  background-color: #d9534f; /* Red background color for the button */
+  border-color: #d9534f; /* Red border color for the button */
+  opacity: 0.6; /* Reduced opacity for the button */
+  cursor: not-allowed; /* Show disabled cursor for the button */
+}
+
+/* Style the "Retire Item" button for active items */
+.btn-danger:not(.disabled) {
+  background-color: #d9534f; /* Red background color for the button */
+  border-color: #d9534f; /* Red border color for the button */
+}
