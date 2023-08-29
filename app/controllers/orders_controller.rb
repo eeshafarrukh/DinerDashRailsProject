@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:show]
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
- 
+  before_action :set_order, only: [:show, :cancel, :mark_as_paid, :mark_as_completed]
+
   def index
     @orders = policy_scope(Order)
   end
@@ -11,34 +11,28 @@ class OrdersController < ApplicationController
     render :index
   end
   def show
-    @order = Order.find(params[:id]) # Move this line before authorization
-    authorize @order
-    if user_signed_in?
-      if current_user.admin?
-        @order = Order.find(params[:id]) # Move this line before authorization
-        authorize @order, :admin_show? # Authorize admin to access order details
-      else
-        @order = Order.find(params[:id]) # Move this line before authorization
-        authorize @order, :user_show? # Authorize user to access their order details
-      end
+   
+
+    if current_user&.admin?
+      authorize @order, :admin_show?
+    elsif user_signed_in?
+      authorize @order, :user_show?
     else
-      authorize @order, :unauthenticated_show? # Authorize unauthenticated user to access order details
+      authorize @order, :unauthenticated_show?
     end
   end
-   def cancel
-    @order = Order.find(params[:id]) # Move this line before authorization
+
+  def cancel
     authorize @order, :cancel?
 
-    
     if @order.update(status: 'cancelled')
       redirect_to orders_path, notice: 'Order was successfully cancelled.'
     else
       redirect_to orders_path, alert: 'Failed to cancel the order.'
     end
   end
-  def mark_as_paid
-    @order = Order.find(params[:id]) # Move this line before authorization
 
+  def mark_as_paid
     authorize @order, :mark_as_paid?
 
     if @order.update(status: 'paid', user_id: @order.user_id)
@@ -48,23 +42,19 @@ class OrdersController < ApplicationController
     end
   end
 
-
   def mark_as_completed
-  @order = Order.find(params[:id]) # Move this line before authorization
+    authorize @order, :mark_as_completed?
 
-  authorize @order, :mark_as_completed?
-
-  if @order.update(status: 'completed')
-    redirect_to orders_path, notice: 'Order was marked as completed.'
-  else
-    redirect_to orders_path, alert: 'Failed to mark the order as completed.'
+    if @order.update(status: 'completed')
+      redirect_to orders_path, notice: 'Order was marked as completed.'
+    else
+      redirect_to orders_path, alert: 'Failed to mark the order as completed.'
+    end
   end
-end
+
   private
-  
+
   def set_order
     @order = Order.find(params[:id])
   end
-  
-  
 end
