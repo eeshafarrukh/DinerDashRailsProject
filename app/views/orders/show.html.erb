@@ -4,6 +4,8 @@
   </div>
   <div class="card-body">
     <p>Status: <%= @order.status %></p>
+    <p>Placed by: <%= @order.user.full_name %></p>
+    <p>Email: <%= @order.user.email %></p>
     <h2>Ordered Items:</h2>
     <ul>
       <% @order.order_items.each do |order_item| %>

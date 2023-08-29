@@ -20,6 +20,13 @@ Rails.application.routes.draw do
       post :remove
     end
   end
+  resources :orders do
+    member do
+      patch 'cancel'
+      patch 'mark_as_paid'
+      patch 'mark_as_completed'
+    end
+  end
   resources :orders, only: [:show, :index]
 
   resource :cart do

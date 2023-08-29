@@ -4,7 +4,7 @@
   has_many :order_items
   has_many :items, through: :order_items
 
-  validates :status, presence: true, inclusion: { in: %w(ordered completed cancelled) }
+  validates :status, presence: true, inclusion: { in: %w(ordered completed cancelled paid) }
   def subtotal
     order_items.collect { |order_item| order_item.valid? ? (order_item.unit_price&. * order_item.quantity.to_i) : 0 }.sum
   end

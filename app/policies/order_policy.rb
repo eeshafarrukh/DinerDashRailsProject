@@ -1,11 +1,28 @@
 class OrderPolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.where(user: user)
+      end
+    end
   end
+
   def user_show?
     user.present? && (record.user == user)
+  end
+
+  def admin_show?
+    user.present? && user.admin?
+  end
+  def cancel?
+    user.admin? || (user.present? && record.user == user)
+  end
+  def mark_as_paid?
+    user.admin? || (user.present? && record.user == user)
+  end
+  def mark_as_completed?
+    user.admin? || (user.present? && record.user == user)
   end
 end
