@@ -8,7 +8,7 @@
         <%= render "cart/orderables" %>
       </div>
       <div class="cart-total">
-        <h3 class="d-flex justify-content-start">Total: <%= @cart.total %></h3>
+        <h3 class="d-flex justify-content-start">Total: <%= number_to_currency(@cart.total, unit: ' PKR ') %></h3>
         <div class="d-flex justify-content-end">
       <%= link_to "Checkout", cart_checkout_path, method: :post, class: "btn btn-warning float-right" %>
    

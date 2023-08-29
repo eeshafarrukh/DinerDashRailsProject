@@ -1,0 +1,17 @@
+<!-- app/views/categories/new.html.erb -->
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">New Category</h5>
+
+    <%= form_with(model: @category, local: true) do |form| %>
+      <div class="mb-3">
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>

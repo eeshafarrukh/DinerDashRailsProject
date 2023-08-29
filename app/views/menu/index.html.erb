@@ -1,6 +1,10 @@
 <%= javascript_include_tag 'ajax_form_submit' %> <!-- Include the JavaScript file -->
-
+                                  
 <div class="container menu-page">
+    <% if current_user&.admin? %>
+      <%= link_to "Create New Item", new_item_path, class: "btn btn-warning" %>
+      <%= link_to "Create New Category", new_category_path, class: "btn btn-warning" %>
+    <% end %>
   <div class="container">
     <% @categories.each do |category| %>
       <div class="row mt-4">
@@ -8,6 +12,7 @@
           <h3><%= category.name %></h3>
           <div class="row">
             <% category.items.each do |item| %>
+          
               <div class="col-md-5 mb-5"> <!-- Increased width to col-md-6 -->
                 <div class="card outline-custom">
                   <div class="card-header">
@@ -15,7 +20,7 @@
                   </div>
                   <div class="card-body">
                     <p class="card-text"><%= item.description %></p>
-                    <p class="card-text">Price: <%= number_to_currency(item.price) %></p>
+                    <p class="card-text">Price: <%= number_to_currency(item.price, unit: 'PKR ') %></p>
                    
                     <%= form_with(url: cart_add_path, local: true, remote: true) do |f| %>
                       <div class="input-group mb-3">
@@ -27,7 +32,11 @@
                       </div>
                     <% end %>
                     <% if current_user&.admin? %>
-                      <%= link_to "Edit Item", edit_item_path(item), class: "btn btn-primary" %>
+                      <%= link_to "Edit Item", edit_item_path(item), class: "btn btn-warning" %>
+                       <%= link_to "Retire Item", retire_item_path(item), method: :patch, class: "btn btn-danger" %>
+
+
+
                     <% end %>
 
                   </div>

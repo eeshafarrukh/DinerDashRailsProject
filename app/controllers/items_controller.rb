@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
-  
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy,:retire]
+  before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy,:retire]
+  def retire
+    @item = Item.find(params[:id])
+    @item.update(retired: true)
+    redirect_to items_path, notice: 'Item was retired successfully.'
+  end
   def index
     @items = Item.all
   end
@@ -50,10 +54,12 @@ class ItemsController < ApplicationController
     redirect_to items_url, notice: 'Item was successfully destroyed.'
   end
   def assign_categories
+    authorize @item
+
     if @item.update(item_params)
       redirect_to item_path(@item), notice: 'Categories were successfully assigned to the item.'
     else
-      render :edit_categories
+      render :edit
     end
   end
   private
@@ -68,6 +74,7 @@ class ItemsController < ApplicationController
   end
   
   def item_params
-    params.require(:item).permit(:title, :description, :price)
+    params.require(:item).permit(:title, :description, :price, :retired, category_ids: [])
   end
+
 end

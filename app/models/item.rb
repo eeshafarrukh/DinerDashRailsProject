@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :title, :description, presence: true
   validates :price, numericality: { greater_than: 0 }
   validate :valid_decimal_price
+  scope :active, -> { where(retired: false) }
 
 
 

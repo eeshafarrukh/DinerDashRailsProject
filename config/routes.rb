@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       patch 'assign_categories'
     end
   end
+
   resources :orders do
     member do
       patch 'cancel'
@@ -32,10 +33,16 @@ Rails.application.routes.draw do
       patch 'mark_as_completed'
     end
   end
+  resources :categories, only: [:new, :create]
+
   resources :orders, only: [:show, :index]
 
   resource :cart do
     post 'checkout', on: :member
+  end
+  
+  resources :items do
+    patch 'retire', on: :member
   end
   
 end
