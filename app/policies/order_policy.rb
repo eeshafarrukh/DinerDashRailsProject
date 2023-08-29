@@ -1,10 +1,12 @@
 class OrderPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      if user.admin?
+      if user.present? && user.admin?
         scope.all
-      else
+      elsif user.present?
         scope.where(user: user)
+      else
+        scope.none
       end
     end
   end

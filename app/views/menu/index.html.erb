@@ -26,6 +26,9 @@
                         </div>
                       </div>
                     <% end %>
+                    <% if current_user&.admin? %>
+                      <%= link_to "Edit Item", edit_item_path(item), class: "btn btn-primary" %>
+                    <% end %>
 
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 # app/controllers/cart_controller.rb
 class CartController < ApplicationController
+   before_action :authenticate_user!, only: :checkout
   def show
     @order_items=current_order.order_items
    

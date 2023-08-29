@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       post :remove
     end
   end
+  resources :items do
+    member do
+      patch 'assign_categories'
+    end
+  end
   resources :orders do
     member do
       patch 'cancel'

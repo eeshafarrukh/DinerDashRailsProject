@@ -1,0 +1,6 @@
+<%= form_for @item, url: assign_categories_item_path(@item), method: :patch do |f| %>
+  <div class="form-group">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  </div>
+  <%= f.submit "Assign Categories", class: "btn btn-primary" %>
+<% end %>
