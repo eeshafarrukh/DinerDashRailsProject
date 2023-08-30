@@ -10,7 +10,9 @@
     <ul>
       <% @order.order_items.each do |order_item| %>
         <li>
-          <%= order_item.item.title %>
+           <%= link_to order_item.item.title, item_path(order_item.item) %>
+          
+
           <div class="row">
             <div class="col-md-6">
               Quantity: <%= order_item.quantity %>

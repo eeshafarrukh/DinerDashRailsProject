@@ -1,6 +1,6 @@
 
 <% @orders.group_by(&:status).each do |status, orders| %>
-  <h2><%= status.capitalize %> </h2>
+  <h2><%= status.capitalize %> (Total: <%= orders.size %>)</h2>
   
   <div class="row">
     <% orders.each do |order| %>
