@@ -1,12 +1,11 @@
 # app/controllers/cart_controller.rb
 class CartController < ApplicationController
    before_action :authenticate_user!, only: :checkout
-  def show
+  def show #remove 
     @order_items=current_order.order_items
-   
   end
 
-  def add
+  def add  #set_item function in before_action call
     @item = Item.find_by(id: params[:id])
     quantity = params[:quantity].to_i
     current_orderable = current_cart.orderables.find_by(item_id: @item.id)
@@ -43,7 +42,7 @@ class CartController < ApplicationController
   end
 
   # Delete associated orderables before destroying the cart
-  @cart.orderables.destroy_all
+  @cart.orderables.destroy_all  # add dependent destroy callback
 
   # Clear the cart after successful checkout
   @cart.destroy

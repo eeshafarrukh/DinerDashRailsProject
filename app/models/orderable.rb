@@ -6,4 +6,3 @@ class Orderable < ApplicationRecord
     item.price * quantity
   end
 end
- 

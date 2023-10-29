@@ -11,7 +11,6 @@ class OrdersController < ApplicationController
     render :index
   end
   def show
-   
 
     if current_user&.admin?
       authorize @order, :admin_show?
